@@ -19,6 +19,13 @@ function setup(){
     person = createSprite(200,500,5,10);
     person.addAnimation("per",pImg);
     person.scale="0.25"
+    if(frameCount % 200 === 0){
+
+        for(var i=0; i<maxDrops; i++){
+            createdrops.push(new drop(random(0,400), random(0,400)));
+        }
+
+    }
 }
 
 function draw(){
@@ -30,13 +37,19 @@ function draw(){
     }
     if ((drops.body.position.y > drops.body.height) && (frameCount % 2 == 0) ){
         Matter.Body.setPosition(drops.body, {x:random(50,400), y:random(50,400)})
-    }*/
+    }
     for (var i =0; i<maxDrops; i++){ 
         createdrops.push(new drop(random(50,300),random(50,500)))
     } 
     if ((drops.body.position.y > drops.body.height) && (frameCount % 10 == 0) ){ 
         Matter.Body.setPosition(drops.body, {x:random(50,300), y:random(50,500)}) }
-        drops.display();
+        drops.display();*/
+
+        for(var i = 0; i<maxDrops; i++){
+            createdrops[i].display();
+            createdrops[i].updateY()
+            
+        }
     drawSprites()
 }   
 
